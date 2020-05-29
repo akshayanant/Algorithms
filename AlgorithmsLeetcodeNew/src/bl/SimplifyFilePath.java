@@ -11,7 +11,7 @@ import java.util.Stack;
 
  In a UNIX-style file system, a period . refers to the current directory. Furthermore, a double period .. moves the directory up a level. For more information, see: Absolute path vs relative path in Linux/Unix
 
- Note that the returned canonical path must always begin with a slash /, and there must be only a single slash / between two directory names. The last directory name (if it exists) must not end with a trailing /. Also, the canonical path must be the shortest string representing the absolute path.
+ Note that the returned canonical path must always begin with a slash /, and there must be only a single slash / between two directory names. The last directory station (if it exists) must not end with a trailing /. Also, the canonical path must be the shortest string representing the absolute path.
 
 
 
@@ -19,7 +19,7 @@ import java.util.Stack;
 
  Input: "/home/"
  Output: "/home"
- Explanation: Note that there is no trailing slash after the last directory name.
+ Explanation: Note that there is no trailing slash after the last directory station.
  Example 2:
 
  Input: "/../"

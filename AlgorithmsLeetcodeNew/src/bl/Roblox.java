@@ -69,6 +69,74 @@ public class Roblox {
         return count-1;
     }
 
+    public static int stockPairs(List<Integer> stocksProfit, long target) {
+        Collections.sort(stocksProfit);
+        int left = 0;
+        int right = stocksProfit.size()-1;
+        int count = 0;
+        while(left<right){
+            long sum = stocksProfit.get(left)+stocksProfit.get(right);
+            if(sum==target) {
+                count++;
+                int oldLeft = left;
+                int oldRight = right;
+                left++;
+                right--;
+                while (left < right && Objects.equals(stocksProfit.get(left), stocksProfit.get(oldLeft))) {
+                    left++;
+                }
+                while (right > left && Objects.equals(stocksProfit.get(right), stocksProfit.get(oldRight))) {
+                    right--;
+                }
+            }
+            else if(sum>target){
+                right--;
+            }
+            else{
+                left++;
+            }
+        }
+        return count;
+    }
+
+    public static void socialGraphs(List<Integer> counts) {
+        // Write your code here
+        int n =counts.size();
+        Map<Integer,List<Integer>> map = new HashMap<>();
+        for(int i=0;i<n;i++){
+            List<Integer> list = map.getOrDefault(counts.get(i),new ArrayList<>());
+            list.add(i);
+            map.put(counts.get(i),list);
+        }
+        List<List<Integer>> res = new ArrayList<>();
+        for(int key : map.keySet()){
+            List<Integer> list = map.get(key);
+            int count = counts.get(list.get(0));
+            for (int i = 0; i < list.size();) {
+                List<Integer> group = new ArrayList<>();
+                for (int j = 0; j < count; j++) {
+                    group.add(list.get(i+j));
+                }
+                i+=count;
+                res.add(group);
+            }
+        }
+        Collections.sort(res, new Comparator<List<Integer>>() {
+            @Override
+            public int compare(List<Integer> o1, List<Integer> o2) {
+                return o1.get(0)-o2.get(0);
+            }
+        });
+        for (int i = 0; i < res.size(); i++) {
+            for (int j = 0; j < res.get(i).size(); j++) {
+                System.out.print(res.get(i).get(j)+" ");
+            }
+            System.out.println("");
+        }
+    }
+
+
+
     public static void main(String[] args) {
         System.out.println(Roblox.consecutive(200));
     }
